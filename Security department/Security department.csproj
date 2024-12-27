@@ -143,6 +143,12 @@
     <Compile Include="Forms\ObjectForm.Designer.cs">
       <DependentUpon>ObjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SecurityPatrol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityPatrol.Designer.cs">
+      <DependentUpon>SecurityPatrol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mappers\ClientMapper.cs" />
     <Compile Include="Mappers\ContractMapper.cs" />
     <Compile Include="Mappers\ObjectMapper.cs" />
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ObjectForm.resx">
       <DependentUpon>ObjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SecurityPatrol.resx">
+      <DependentUpon>SecurityPatrol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

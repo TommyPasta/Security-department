@@ -36,12 +36,11 @@ namespace Security_department.Services
 
             _objectRepository.Add(obj); // Добавление объекта в репозиторий
         }
-
+        
         public void RemoveObject(int id)
         {
             _objectRepository.Remove(id); // Удаление объекта по ID
         }
-
         public ObjectDTO GetObjectById(int id)
         {
             var obj = _objectRepository.GetById(id);

@@ -1,4 +1,6 @@
 ﻿using Security_department.DTOs;
+using Security_department.Presenters.Interface;
+using Security_department.Services.Interface;
 using Security_department.Views;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,14 @@ namespace Security_department.Forms
 {
     public partial class ContractForm : Form, IContractView
     {
-        public ContractForm()
+        private readonly IContractPresenter _contractPresenter; // Презентер для контрактов
+        private readonly IObjectService _objectService; // Сервис для работы с объектами
+
+        public ContractForm(IContractPresenter contractPresenter, IObjectService objectService)
         {
             InitializeComponent();
+            _contractPresenter = contractPresenter; // Инициализация презентера
+            _objectService = objectService; // Инициализация сервиса объектов
         }
 
         // Свойства для получения данных из формы
@@ -30,17 +37,80 @@ namespace Security_department.Forms
 
         private void btnAddContract_Click(object sender, EventArgs e)
         {
-            // Логика для добавления контракта
+            // Получаем объект по ObjectId
+            var objectEntity = _objectService.GetObjectById(ObjectId); // Получаем объект из сервиса
+
+            // Проверяем, что объект существует
+            if (objectEntity == null)
+            {
+                ShowMessage("Объект не найден.");
+                return;
+            }
+
+            // Создаем новый объект ContractDTO на основе данных из формы
+            var contractDto = new ContractDTO
+            {
+                ClientId = ClientId,
+                Object = objectEntity, // Используем Id объекта
+                StartDate = StartDate,
+                EndDate = EndDate,
+                Penalty = Penalty,
+                InterestRate = InterestRate,
+                AdditionalConditions = AdditionalConditions,
+                PaymentAmount = PaymentAmount
+            };
+
+            // Вызов метода презентера для добавления контракта
+            _contractPresenter.AddContract(contractDto);
+
+            // Очистка полей ввода после добавления
+            ClearFields();
+            ShowMessage("Контракт успешно добавлен.");
         }
 
         private void btnUpdateContract_Click(object sender, EventArgs e)
         {
-            // Логика для обновления контракта
+            var objectEntity = _objectService.GetObjectById(ObjectId); // Получаем объект из сервиса
+
+            // Проверяем, что объект существует
+            if (objectEntity == null)
+            {
+                ShowMessage("Объект не найден.");
+                return;
+            }
+            // Создаем новый объект ContractDTO на основе данных из формы
+            var contractDto = new ContractDTO
+            {
+                Id = Id, // Убедитесь, что Id установлен
+                ClientId = ClientId,
+                Object = objectEntity,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                Penalty = Penalty,
+                InterestRate = InterestRate,
+                AdditionalConditions = AdditionalConditions,
+                PaymentAmount = PaymentAmount
+            };
+
+            // Вызов метода презентера для обновления контракта
+            _contractPresenter.UpdateContract(contractDto);
+
+            // Очистка полей ввода после обновления
+            ClearFields();
+            ShowMessage("Контракт успешно обновлен.");
         }
 
         private void btnRemoveContract_Click(object sender, EventArgs e)
         {
-            // Логика для удаления контракта
+            // Получаем идентификатор контракта для удаления
+            var contractId = Id;
+
+            // Вызов метода презентера для удаления контракта
+            _contractPresenter.RemoveContract(contractId);
+
+            // Очистка полей ввода после удаления
+            ClearFields();
+            ShowMessage("Контракт успешно удален.");
         }
 
         public void LoadContracts(List<ContractDTO> contracts)
