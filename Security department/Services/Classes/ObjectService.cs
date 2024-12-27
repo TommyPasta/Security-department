@@ -1,4 +1,5 @@
 ﻿using Security_department.DTOs;
+using Security_department.Mappers;
 using Security_department.Repositories.Interfaces;
 using Security_department.Services.Interface;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Security_department.Services.Classes
+namespace Security_department.Services
 {
     public class ObjectService : IObjectService
     {
@@ -20,26 +21,31 @@ namespace Security_department.Services.Classes
 
         public void AddObject(ObjectDTO objectDto)
         {
-            var obj = new Object(objectDto.Id, objectDto.Address, objectDto.Floor);
-            _objectRepository.Add(obj);
+            var obj = new Object(
+                objectDto.Id,
+                objectDto.Address,
+                objectDto.Floor,
+                objectDto.EntranceCode,
+                objectDto.HasEntranceCode,
+                objectDto.HouseType,
+                objectDto.TotalFloors,
+                objectDto.DoorType,
+                objectDto.BalconyType,
+                objectDto.ApartmentPlan
+            );
+
+            _objectRepository.Add(obj); // Добавление объекта в репозиторий
         }
 
         public void RemoveObject(int id)
         {
-            _objectRepository.Remove(id);
+            _objectRepository.Remove(id); // Удаление объекта по ID
         }
 
         public ObjectDTO GetObjectById(int id)
         {
             var obj = _objectRepository.GetById(id);
-            if (obj == null) return null;
-
-            return new ObjectDTO
-            {
-                Id = obj.Id,
-                Address = obj.Address,
-                Floor = obj.Floor
-            };
+            return ObjectMapper.ToDto(obj); // Преобразование сущности в DTO
         }
 
         public List<ObjectDTO> GetAllObjects()
@@ -49,15 +55,16 @@ namespace Security_department.Services.Classes
 
             foreach (var obj in objects)
             {
-                objectDtos.Add(new ObjectDTO
-                {
-                    Id = obj.Id,
-                    Address = obj.Address,
-                    Floor = obj.Floor
-                });
+                objectDtos.Add(ObjectMapper.ToDto(obj)); // Преобразование сущности в DTO
             }
 
             return objectDtos;
+        }
+
+        public void UpdateObject(ObjectDTO objectDto) // Реализация метода
+        {
+            var obj = ObjectMapper.ToEntity(objectDto); // Преобразование DTO в сущность
+            _objectRepository.Update(obj); // Обновление объекта в репозитории
         }
     }
 }

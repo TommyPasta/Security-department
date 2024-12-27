@@ -9,17 +9,18 @@ namespace Security_department.Views
 {
     public interface IContractView
     {
-        int Id { get; set; }
-        int ClientId { get; set; }
-        ObjectDTO Object { get; set; }
-        DateTime StartDate { get; set; }
-        DateTime EndDate { get; set; }
-        int Penalty { get; set; }
-        float InterestRate { get; set; }
-        string AdditionalConditions { get; set; }
-        float PaymentAmount { get; set; }
+        int Id { get; }
+        int ClientId { get; }
+        int ObjectId { get; }
+        DateTime StartDate { get; }
+        DateTime EndDate { get; }
+        int Penalty { get; }
+        float InterestRate { get; set; } // Добавлен сеттер
+        string AdditionalConditions { get; }
+        float PaymentAmount { get; }
 
-        void ShowMessage(string message);
+        void LoadContracts(List<ContractDTO> contracts);
         void ClearFields();
+        void ShowMessage(string message);
     }
 }

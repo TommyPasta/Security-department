@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Security_department
 {
@@ -11,18 +7,44 @@ namespace Security_department
         public int Id { get; private set; }
         public string Address { get; private set; }
         public int Floor { get; private set; }
-        public Object(int id, string address, int floor)
-        {
-            if (id <= 0)
-                throw new ArgumentException("ID должен быть положительным целым числом.");
-            if (string.IsNullOrWhiteSpace(address))
-                throw new ArgumentException("Адрес не может быть пустым.");
-            if (floor < 0)
-                throw new ArgumentException("Этаж не может быть отрицательным.");
+        public string EntranceCode { get; private set; } // Кодовый замок на подъезде
+        public bool HasEntranceCode { get; private set; } // Есть/нет кодовый замок
+        public string HouseType { get; private set; } // Тип дома (кирпичный, панельный)
+        public int TotalFloors { get; private set; } // Количество этажей
+        public string DoorType { get; private set; } // Тип входной двери (метал, дерево)
+        public string BalconyType { get; private set; } // Тип балкона (отдельный, совмещенный, отсутствует)
+        public string ApartmentPlan { get; private set; } // План квартиры
 
+        public Object(int id, string address, int floor, string entranceCode, bool hasEntranceCode,
+              string houseType, int totalFloors, string doorType, string balconyType,
+              string apartmentPlan)
+        {
             Id = id;
             Address = address;
             Floor = floor;
+            EntranceCode = entranceCode;
+            HasEntranceCode = hasEntranceCode;
+            HouseType = houseType;
+            TotalFloors = totalFloors;
+            DoorType = doorType;
+            BalconyType = balconyType;
+            ApartmentPlan = apartmentPlan;
+        }
+
+        // Метод для обновления данных объекта
+        public void Update(string address, int floor, string entranceCode, bool hasEntranceCode,
+                           string houseType, int totalFloors, string doorType, string balconyType,
+                           string apartmentPlan)
+        {
+            Address = address;
+            Floor = floor;
+            EntranceCode = entranceCode;
+            HasEntranceCode = hasEntranceCode;
+            HouseType = houseType;
+            TotalFloors = totalFloors;
+            DoorType = doorType;
+            BalconyType = balconyType;
+            ApartmentPlan = apartmentPlan;
         }
     }
 }

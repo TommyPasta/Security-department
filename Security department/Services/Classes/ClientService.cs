@@ -1,4 +1,5 @@
 ﻿using Security_department.DTOs;
+using Security_department.Mappers;
 using Security_department.Repositories.Interfaces;
 using Security_department.Services.Interface;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Security_department.Services.Classes
+namespace Security_department.Services
 {
     public class ClientService : IClientService
     {
@@ -18,41 +19,6 @@ namespace Security_department.Services.Classes
             _clientRepository = clientRepository;
         }
 
-        public void AddClient(ClientDTO clientDto)
-        {
-            var client = new Client(clientDto.Id, clientDto.FirstName, clientDto.SecondName, clientDto.Surname, clientDto.Address, clientDto.Phone,
-                new Passport(clientDto.Passport.PassportNumber, clientDto.Passport.IssuingAuthority, clientDto.Passport.DateOfIssue, clientDto.Passport.DateOfExpiry));
-            _clientRepository.Add(client);
-        }
-
-        public void RemoveClient(int id)
-        {
-            _clientRepository.Remove(id);
-        }
-
-        public ClientDTO GetClientById(int id)
-        {
-            var client = _clientRepository.GetById(id);
-            if (client == null) return null;
-
-            return new ClientDTO
-            {
-                Id = client.Id,
-                FirstName = client.FirstName,
-                SecondName = client.SecondName,
-                Surname = client.Surname,
-                Address = client.Address,
-                Phone = client.Phone,
-                Passport = new PassportDTO
-                {
-                    PassportNumber = client.Passport.PassportNumber,
-                    IssuingAuthority = client.Passport.IssuingAuthority,
-                    DateOfIssue = client.Passport.DateOfIssue,
-                    DateOfExpiry = client.Passport.DateOfExpiry
-                }
-            };
-        }
-
         public List<ClientDTO> GetAllClients()
         {
             var clients = _clientRepository.GetAll();
@@ -60,25 +26,34 @@ namespace Security_department.Services.Classes
 
             foreach (var client in clients)
             {
-                clientDtos.Add(new ClientDTO
-                {
-                    Id = client.Id,
-                    FirstName = client.FirstName,
-                    SecondName = client.SecondName,
-                    Surname = client.Surname,
-                    Address = client.Address,
-                    Phone = client.Phone,
-                    Passport = new PassportDTO
-                    {
-                        PassportNumber = client.Passport.PassportNumber,
-                        IssuingAuthority = client.Passport.IssuingAuthority,
-                        DateOfIssue = client.Passport.DateOfIssue,
-                        DateOfExpiry = client.Passport.DateOfExpiry
-                    }
-                });
+                clientDtos.Add(ClientMapper.ToDto(client)); // Преобразование сущности в DTO
             }
 
             return clientDtos;
+        }
+
+        public void AddClient(ClientDTO clientDto)
+        {
+            var client = ClientMapper.ToEntity(clientDto); // Преобразование DTO в сущность
+            _clientRepository.Add(client); // Добавление клиента в репозиторий
+        }
+
+        public void RemoveClient(int id)
+        {
+            _clientRepository.Remove(id); // Удаление клиента по ID
+        }
+
+        public void UpdateClient(Client client)
+        {
+            var existingClient = _clientRepository.GetById(client.Id);
+            if (existingClient == null)
+            {
+                throw new ArgumentException("Клиент не найден.");
+            }
+
+            // Обновление данных клиента
+            existingClient.Update(client.FirstName, client.SecondName, client.Surname, client.Address, client.Phone, client.Passport);
+            _clientRepository.Update(existingClient); // Сохранение изменений в репозитории
         }
     }
 }

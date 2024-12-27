@@ -19,5 +19,8 @@ namespace Security_department.Views
 
         void ShowMessage(string message);
         void ClearFields();
+
+        void ClearClientList();
+        void AddClientToList(ClientDTO client);
     }
 }

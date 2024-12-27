@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Security_department.Repositories.Interfaces
 {
@@ -12,5 +8,6 @@ namespace Security_department.Repositories.Interfaces
         void Remove(int id);
         Object GetById(int id);
         List<Object> GetAll();
+        void Update(Object obj);
     }
 }

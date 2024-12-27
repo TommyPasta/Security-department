@@ -1,14 +1,13 @@
 ﻿using Security_department.DTOs;
 using System.Collections.Generic;
 
-namespace Security_department.Services.Interface
+namespace Security_department.Presenters.Interface
 {
-    public interface IObjectService
+    public interface IObjectPresenter
     {
+        List<ObjectDTO> LoadObjects(); // Метод возвращает список объектов
         void AddObject(ObjectDTO objectDto);
         void RemoveObject(int id);
-        ObjectDTO GetObjectById(int id);
-        List<ObjectDTO> GetAllObjects();
         void UpdateObject(ObjectDTO objectDto);
     }
 }

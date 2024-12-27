@@ -12,5 +12,6 @@ namespace Security_department.Repositories.Interfaces
         void Remove(int id);
         Client GetById(int id);
         List<Client> GetAll();
+        void Update(Client client);
     }
 }

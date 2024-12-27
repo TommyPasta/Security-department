@@ -1,11 +1,8 @@
 ﻿using Security_department.DTOs;
+using Security_department.Mappers;
 using Security_department.Repositories.Interfaces;
 using Security_department.Services.Interface;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Security_department.Services.Classes
 {
@@ -23,7 +20,7 @@ namespace Security_department.Services.Classes
             var contract = new Contract(
                 contractDto.Id,
                 contractDto.ClientId,
-                new Object(contractDto.Object.Id, contractDto.Object.Address, contractDto.Object.Floor),
+                ObjectMapper.ToEntity(contractDto.Object), // Преобразование DTO объекта в сущность
                 contractDto.StartDate,
                 contractDto.EndDate,
                 contractDto.Penalty,
@@ -31,12 +28,13 @@ namespace Security_department.Services.Classes
                 contractDto.AdditionalConditions,
                 contractDto.PaymentAmount
             );
-            _contractRepository.Add(contract);
+
+            _contractRepository.Add(contract); // Добавление контракта в репозиторий
         }
 
         public void RemoveContract(int id)
         {
-            _contractRepository.Remove(id);
+            _contractRepository.Remove(id); // Удаление контракта по ID
         }
 
         public ContractDTO GetContractById(int id)
@@ -48,12 +46,7 @@ namespace Security_department.Services.Classes
             {
                 Id = contract.Id,
                 ClientId = contract.ClientId,
-                Object = new ObjectDTO
-                {
-                    Id = contract.Object.Id,
-                    Address = contract.Object.Address,
-                    Floor = contract.Object.Floor
-                },
+                Object = ObjectMapper.ToDto((Object)contract.Object), // Преобразование сущности объекта в DTO
                 StartDate = contract.StartDate,
                 EndDate = contract.EndDate,
                 Penalty = contract.Penalty,
@@ -74,12 +67,7 @@ namespace Security_department.Services.Classes
                 {
                     Id = contract.Id,
                     ClientId = contract.ClientId,
-                    Object = new ObjectDTO
-                    {
-                        Id = contract.Object.Id,
-                        Address = contract.Object.Address,
-                        Floor = contract.Object.Floor
-                    },
+                    Object = ObjectMapper.ToDto((Object)contract.Object), // Преобразование сущности объекта в DTO
                     StartDate = contract.StartDate,
                     EndDate = contract.EndDate,
                     Penalty = contract.Penalty,

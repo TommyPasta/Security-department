@@ -17,7 +17,7 @@ namespace Security_department.Mappers
             {
                 Id = contract.Id,
                 ClientId = contract.ClientId,
-                Object = ObjectMapper.ToDto(contract.Object),
+                Object = ObjectMapper.ToDto((Object)contract.Object),
                 StartDate = contract.StartDate,
                 EndDate = contract.EndDate,
                 Penalty = contract.Penalty,

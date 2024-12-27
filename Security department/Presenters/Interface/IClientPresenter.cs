@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Security_department.Services.Interface
+namespace Security_department.Presenters.Interface
 {
-    public interface IClientService
+    public interface IClientPresenter
     {
-        List<ClientDTO> GetAllClients();
+        void LoadClients();
         void AddClient(ClientDTO clientDto);
         void RemoveClient(int id);
-        void UpdateClient(Client client);
+        void UpdateClient(ClientDTO clientDto);
+        List<ClientDTO> GetAllClients(); // Новый метод
     }
 }

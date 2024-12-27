@@ -61,15 +61,19 @@ namespace Security_department
                 throw new ArgumentNullException(nameof(contract), "Договор не может быть null.");
             contracts.Remove(contract);
         }
-
+        public void Update(string firstName, string secondName, string surname, string address, string phone, IPassport passport)
+        {
+            FirstName = firstName;
+            SecondName = secondName;
+            Surname = surname;
+            Address = address;
+            Phone = phone;
+            Passport = passport;
+        }
         public List<IContract> GetContracts()
         {
             return contracts;
         }
 
-        public override string ToString()
-        {
-            return $"Клиент ID: {Id}, ФИО: {FirstName} {SecondName} {Surname}, Адрес: {Address}, Телефон: {Phone}, Паспорт: {Passport.PassportNumber}";
-        }
     }
 }

@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 using Security_department.Repositories.Interfaces;
 using Security_department;
 using Formatting = Newtonsoft.Json.Formatting;
+using Security_department.DTOs;
+using Security_department.Mappers;
+using System;
 
 public class ClientRepository : IClientRepository
 {
@@ -42,5 +45,19 @@ public class ClientRepository : IClientRepository
 
         var json = File.ReadAllText(filePath);
         return JsonConvert.DeserializeObject<List<Client>>(json);
+    }
+
+    public void Update(Client client)
+    {
+        var clients = GetAll();
+        var clientToUpdate = clients.Find(c => c.Id == client.Id);
+        if (clientToUpdate != null)
+        {
+            // Обновление данных клиента через метод Update
+            clientToUpdate.Update(client.FirstName, client.SecondName, client.Surname, client.Address, client.Phone, client.Passport);
+
+            // Сохранение изменений в файл
+            File.WriteAllText(filePath, JsonConvert.SerializeObject(clients, Formatting.Indented));
+        }
     }
 }

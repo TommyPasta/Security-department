@@ -40,4 +40,19 @@ public class ObjectRepository : IObjectRepository
         var json = File.ReadAllText(filePath);
         return JsonSerializer.Deserialize<List<Object>>(json);
     }
+
+    public void Update(Object obj) // Реализация метода Update
+    {
+        var objects = GetAll();
+        var existingObject = objects.Find(o => o.Id == obj.Id);
+        if (existingObject != null)
+        {
+            // Обновляем данные существующего объекта
+            existingObject.Update(obj.Address, obj.Floor, obj.EntranceCode, obj.HasEntranceCode,
+                                  obj.HouseType, obj.TotalFloors, obj.DoorType, obj.BalconyType,
+                                  obj.ApartmentPlan);
+            // Сохраняем изменения в файл
+            File.WriteAllText(filePath, JsonSerializer.Serialize(objects, new JsonSerializerOptions { WriteIndented = true }));
+        }
+    }
 }
