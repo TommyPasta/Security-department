@@ -94,5 +94,10 @@ namespace Security_department.Forms
             txtIssuingAuthority.Clear();
             dtpDateOfIssue.Value = DateTime.Now;
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
