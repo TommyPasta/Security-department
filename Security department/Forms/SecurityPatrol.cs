@@ -2,78 +2,171 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Security_department.DTOs;
+using Security_department.Mappers;
 using Security_department.Presenters.Interface;
+using Security_department.Services.Interface;
 using Security_department.Views;
 
 namespace Security_department.Forms
 {
     public partial class SecurityPatrolForm : Form, ISecurityPatrolView
     {
-        private readonly ISecurityPatrolPresenter _securityPatrolPresenter;
+        private ISecurityPatrolPresenter _securityPatrolPresenter;
+        private IContractService _contractService;
 
-        public SecurityPatrolForm(ISecurityPatrolPresenter securityPatrolPresenter)
+        public SecurityPatrolForm()
         {
             InitializeComponent();
-            _securityPatrolPresenter = securityPatrolPresenter;
-            LoadPatrols(); // Загрузка патрульных выездов при инициализации формы
+            SetupDataGridView();
         }
 
-        // Свойства для получения данных из формы
-        public string CrewNumber => txtCrewNumber.Text; // Номер экипажа
-        public string CommanderName => txtCommanderName.Text; // Имя командира
-        public string CallReason => txtCallReason.Text; // Причина вызова
-        public DateTime DepartureDateTime => dtpDepartureDateTime.Value; // Дата и время выезда
+        public void SetPresenter(ISecurityPatrolPresenter securityPatrolPresenter, IContractService contractService)
+        {
+            _securityPatrolPresenter = securityPatrolPresenter;
+            _contractService = contractService;
+            LoadContracts();
+        }
+
+        private void SetupDataGridView()
+        {
+            dataGridViewPatrols.Columns.Add("PatrolId", "ID");
+            dataGridViewPatrols.Columns.Add("CrewNumber", "Экипаж");
+            dataGridViewPatrols.Columns.Add("CommanderName", "Командир");
+            dataGridViewPatrols.Columns.Add("CallReason", "Причина");
+            dataGridViewPatrols.Columns.Add("DepartureDateTime", "Дата выезда");
+            dataGridViewPatrols.Columns.Add("ContractId", "Контракт ID");
+        }
+
+        private void LoadContracts()
+        {
+            var contracts = _contractService.GetAllContracts();
+            comboBoxContracts.DataSource = contracts;
+            comboBoxContracts.DisplayMember = "Id";
+            comboBoxContracts.ValueMember = "Id";
+        }
+
+        public Contract Contract
+        {
+            get
+            {
+                if (comboBoxContracts.SelectedValue != null)
+                {
+                    var contractDto = _contractService.GetContractById((int)comboBoxContracts.SelectedValue);
+                    return ContractMapper.ToEntity(contractDto);
+                }
+                return null;
+            }
+        }
+
+        public string CrewNumber
+        {
+            get => txtCrewNumber.Text;
+            set => txtCrewNumber.Text = value;
+        }
+
+        public string CommanderName
+        {
+            get => txtCommanderName.Text;
+            set => txtCommanderName.Text = value;
+        }
+
+        public string CallReason
+        {
+            get => txtCallReason.Text;
+            set => txtCallReason.Text = value;
+        }
+
+        public DateTime DepartureDateTime
+        {
+            get => dtpDepartureDateTime.Value;
+            set => dtpDepartureDateTime.Value = value;
+        }
+
+        public string StolenItemName => txtStolenItemName.Text;
+
+        public decimal StolenItemValue => decimal.TryParse(txtStolenItemValue.Text, out var value) ? value : 0;
+
+        public string DocumentNumber => txtDocumentNumber.Text;
+
+        public string IssuingAuthority => txtIssuingAuthority.Text;
+
+        public DateTime DateOfIssue => dtpDateOfIssue.Value;
 
         private void btnExecutePatrol_Click(object sender, EventArgs e)
         {
-            // Логика для выполнения патрулирования
-            var patrolDto = new SecurityPatrolDTO
+            try
             {
-                CrewNumber = CrewNumber,
-                CommanderName = CommanderName,
-                CallReason = CallReason,
-                DepartureDateTime = DepartureDateTime
-            };
+                var patrolDto = new SecurityPatrolDTO
+                {
+                    CrewNumber = CrewNumber,
+                    CommanderName = CommanderName,
+                    CallReason = CallReason,
+                    DepartureDateTime = DepartureDateTime,
+                    ContractId = Contract.Id
+                };
 
-            _securityPatrolPresenter.ExecutePatrol(patrolDto);
-            ShowMessage("Патрулирование выполнено.");
-            LoadPatrols(); // Обновление списка патрульных выездов
+                _securityPatrolPresenter.ExecutePatrol(patrolDto);
+                ShowMessage("Патрулирование выполнено.");
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
 
         private void btnAddStolenItem_Click(object sender, EventArgs e)
         {
-            // Логика для добавления украденной вещи
-            var stolenItemDto = new StolenItemDTO
+            try
             {
-                ItemName = txtStolenItemName.Text,
-                EstimatedValue = decimal.TryParse(txtStolenItemValue.Text, out var value) ? value : 0
-            };
+                var stolenItemDto = new StolenItemDTO
+                {
+                    ItemName = StolenItemName,
+                    EstimatedValue = StolenItemValue
+                };
 
-            _securityPatrolPresenter.AddStolenItem(stolenItemDto);
-            ShowMessage("Украденная вещь добавлена.");
+                _securityPatrolPresenter.AddStolenItem(stolenItemDto);
+                ShowMessage("Украденная вещь добавлена.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
 
         private void btnAddArrestDetails_Click(object sender, EventArgs e)
         {
-            // Логика для добавления сведений о задержании
-            var arrestDetailsDto = new ArrestDetailsDTO
+            try
             {
-                DocumentNumber = txtDocumentNumber.Text,
-                IssuingAuthority = txtIssuingAuthority.Text,
-                DateOfIssue = dtpDateOfIssue.Value
-            };
+                var arrestDetailsDto = new ArrestDetailsDTO
+                {
+                    DocumentNumber = DocumentNumber,
+                    IssuingAuthority = IssuingAuthority,
+                    DateOfIssue = DateOfIssue
+                };
 
-            _securityPatrolPresenter.AddArrestDetails(arrestDetailsDto);
-            ShowMessage("Сведения о задержании добавлены.");
+                _securityPatrolPresenter.AddArrestDetails(arrestDetailsDto);
+                ShowMessage("Сведения о задержании добавлены.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
 
         public void LoadPatrols(List<SecurityPatrolDTO> patrols)
         {
-            // Метод для загрузки патрульных выездов в таблицу
             dataGridViewPatrols.Rows.Clear();
             foreach (var patrol in patrols)
             {
-                dataGridViewPatrols.Rows.Add(patrol.CrewNumber, patrol.CommanderName, patrol.CallReason, patrol.DepartureDateTime);
+                dataGridViewPatrols.Rows.Add(
+                    patrol.PatrolId,
+                    patrol.CrewNumber,
+                    patrol.CommanderName,
+                    patrol.CallReason,
+                    patrol.DepartureDateTime,
+                    patrol.ContractId
+                );
             }
         }
 
@@ -82,9 +175,8 @@ namespace Security_department.Forms
             MessageBox.Show(message);
         }
 
-        private void ClearFields()
+        public void ClearFields()
         {
-            // Метод для очистки полей ввода
             txtCrewNumber.Clear();
             txtCommanderName.Clear();
             txtCallReason.Clear();
@@ -93,6 +185,7 @@ namespace Security_department.Forms
             txtDocumentNumber.Clear();
             txtIssuingAuthority.Clear();
             dtpDateOfIssue.Value = DateTime.Now;
+            dtpDepartureDateTime.Value = DateTime.Now;
         }
 
         private void label2_Click(object sender, EventArgs e)

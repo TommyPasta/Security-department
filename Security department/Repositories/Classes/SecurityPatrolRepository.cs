@@ -1,51 +1,40 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Security_department.Repositories.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Security_department.Services.Interface;
+using System.IO;
 
 namespace Security_department.Repositories.Classes
 {
-    using Security_department.Services.Interface;
-    using Security_department.Views;
-
-    public class SecurityPatrolPresenter
+    public class SecurityPatrolRepository : ISecurityPatrolRepository
     {
-        private readonly ISecurityPatrolService _securityPatrolService;
-        private readonly ISecurityPatrolView _securityPatrolView;
+        private readonly string filePath = "patrols.json";
 
-        public SecurityPatrolPresenter(ISecurityPatrolService securityPatrolService, ISecurityPatrolView securityPatrolView)
+        public void AddPatrol(SecurityPatrol patrol)
         {
-            _securityPatrolService = securityPatrolService;
-            _securityPatrolView = securityPatrolView;
+            var patrols = GetAllPatrols();
+            patrols.Add(patrol);
+            SavePatrols(patrols);
         }
 
-        public void ExecutePatrol()
+        public List<SecurityPatrol> GetAllPatrols()
         {
-            var patrol = new SecurityPatrol(_securityPatrolView.Contract);
-            patrol.CrewNumber = _securityPatrolView.CrewNumber;
-            patrol.CommanderName = _securityPatrolView.CommanderName;
-            patrol.CallReason = _securityPatrolView.CallReason;
+            if (!File.Exists(filePath))
+                return new List<SecurityPatrol>();
 
-            _securityPatrolService.AddPatrol(patrol);
-            patrol.ExecutePatrol();
+            var json = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<SecurityPatrol>>(json) ?? new List<SecurityPatrol>();
         }
 
-        public void AddStolenItem()
+        public SecurityPatrol GetPatrolById(int id)
         {
-            var itemName = _securityPatrolView.StolenItemName;
-            var estimatedValue = _securityPatrolView.StolenItemValue;
-            _securityPatrolService.AddStolenItem(itemName, estimatedValue);
+            var patrols = GetAllPatrols();
+            return patrols.Find(p => p.PatrolId == id);
         }
 
-        public void AddArrestDetails()
+        private void SavePatrols(List<SecurityPatrol> patrols)
         {
-            var documentNumber = _securityPatrolView.DocumentNumber;
-            var issuingAuthority = _securityPatrolView.IssuingAuthority;
-            var dateOfIssue = _securityPatrolView.DateOfIssue;
-
-            _securityPatrolService.AddArrestDetails(documentNumber, issuingAuthority, dateOfIssue);
+            var json = JsonConvert.SerializeObject(patrols, Formatting.Indented);
+            File.WriteAllText(filePath, json);
         }
     }
 }

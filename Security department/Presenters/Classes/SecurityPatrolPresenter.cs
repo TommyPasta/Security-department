@@ -1,59 +1,67 @@
-﻿using Security_department.Presenters.Interface;
+﻿using Security_department.DTOs;
+using Security_department.Mappers;
+using Security_department.Presenters.Interface;
 using Security_department.Services.Interface;
 using Security_department.Views;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Security_department.Presenters.Classes
 {
     public class SecurityPatrolPresenter : ISecurityPatrolPresenter
     {
         private readonly ISecurityPatrolService _securityPatrolService;
+        private readonly IContractService _contractService;
         private readonly ISecurityPatrolView _securityPatrolView;
 
-        public SecurityPatrolPresenter(ISecurityPatrolService securityPatrolService, ISecurityPatrolView securityPatrolView)
+        public SecurityPatrolPresenter(
+            ISecurityPatrolService securityPatrolService,
+            IContractService contractService,
+            ISecurityPatrolView securityPatrolView)
         {
             _securityPatrolService = securityPatrolService;
+            _contractService = contractService;
             _securityPatrolView = securityPatrolView;
         }
 
-        public void ExecutePatrol()
+        public void ExecutePatrol(SecurityPatrolDTO patrolDto)
         {
-            // Создаем новый объект SecurityPatrol на основе контракта из представления
-            var patrol = new SecurityPatrol(_securityPatrolView.Contract)
-            {
-                CrewNumber = _securityPatrolView.CrewNumber,
-                CommanderName = _securityPatrolView.CommanderName,
-                CallReason = _securityPatrolView.CallReason
-            };
+            var contractDto = _contractService.GetContractById(patrolDto.ContractId);
+            if (contractDto == null)
+                throw new ArgumentException("Контракт не найден");
 
-            // Добавляем патруль в сервис
+            var contract = ContractMapper.ToEntity(contractDto);
+            var patrol = SecurityPatrolMapper.ToEntity(patrolDto, contract);
+
             _securityPatrolService.AddPatrol(patrol);
-            patrol.ExecutePatrol(); // Выполняем патрулирование
+            patrol.ExecutePatrol();
         }
 
-        public void AddStolenItem()
+        public void AddStolenItem(StolenItemDTO stolenItemDto)
         {
-            // Получаем данные о украденной вещи из представления
-            var itemName = _securityPatrolView.StolenItemName;
-            var estimatedValue = _securityPatrolView.StolenItemValue;
-
-            // Добавляем украденную вещь в сервис
-            _securityPatrolService.AddStolenItem(itemName, estimatedValue);
+            _securityPatrolService.AddStolenItem(stolenItemDto.ItemName, stolenItemDto.EstimatedValue);
         }
 
-        public void AddArrestDetails()
+        public void AddArrestDetails(ArrestDetailsDTO arrestDetailsDto)
         {
-            // Получаем данные о задержании из представления
-            var documentNumber = _securityPatrolView.DocumentNumber;
-            var issuingAuthority = _securityPatrolView.IssuingAuthority;
-            var dateOfIssue = _securityPatrolView.DateOfIssue;
+            _securityPatrolService.AddArrestDetails(
+                arrestDetailsDto.DocumentNumber,
+                arrestDetailsDto.IssuingAuthority,
+                arrestDetailsDto.DateOfIssue
+            );
+        }
 
-            // Добавляем сведения о задержании в сервис
-            _securityPatrolService.AddArrestDetails(documentNumber, issuingAuthority, dateOfIssue);
+        public List<SecurityPatrolDTO> GetAllPatrols()
+        {
+            var patrols = _securityPatrolService.GetAllPatrols();
+            var patrolDtos = new List<SecurityPatrolDTO>();
+
+            foreach (var patrol in patrols)
+            {
+                patrolDtos.Add(SecurityPatrolMapper.ToDto(patrol));
+            }
+
+            return patrolDtos;
         }
     }
 }

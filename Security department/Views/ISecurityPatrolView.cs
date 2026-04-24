@@ -1,24 +1,24 @@
-﻿using System;
+﻿using Security_department.DTOs;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Security_department.Views
 {
     public interface ISecurityPatrolView
     {
         Contract Contract { get; } // Связанный контракт
-        string CrewNumber { get; set; } // Номер экипажа
-        string CommanderName { get; set; } // Имя командира
-        string CallReason { get; set; } // Причина вызова
-        string StolenItemName { get; } // Название украденной вещи
-        decimal StolenItemValue { get; } // Оценочная стоимость украденной вещи
-        string DocumentNumber { get; } // Номер документа о задержании
-        string IssuingAuthority { get; } // Орган, выдавший документ
-        DateTime DateOfIssue { get; } // Дата выдачи документа
+        string CrewNumber { get; set; }
+        string CommanderName { get; set; }
+        string CallReason { get; set; }
+        DateTime DepartureDateTime { get; set; }
+        string StolenItemName { get; }
+        decimal StolenItemValue { get; }
+        string DocumentNumber { get; }
+        string IssuingAuthority { get; }
+        DateTime DateOfIssue { get; }
 
-        void ShowMessage(string message); // Метод для отображения сообщений
-        void ClearFields(); // Метод для очистки полей ввода
+        void ShowMessage(string message);
+        void ClearFields();
+        void LoadPatrols(List<SecurityPatrolDTO> patrols);
     }
 }

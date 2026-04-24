@@ -2,15 +2,13 @@
 using Security_department.Services.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Security_department.Services.Classes
 {
     public class SecurityPatrolService : ISecurityPatrolService
     {
         private readonly ISecurityPatrolRepository _securityPatrolRepository;
+        private SecurityPatrol _currentPatrol;
 
         public SecurityPatrolService(ISecurityPatrolRepository securityPatrolRepository)
         {
@@ -19,17 +17,29 @@ namespace Security_department.Services.Classes
 
         public void AddPatrol(SecurityPatrol patrol)
         {
+            _currentPatrol = patrol;
             _securityPatrolRepository.AddPatrol(patrol);
         }
 
         public void AddStolenItem(string itemName, decimal estimatedValue)
         {
-            // Логика для добавления украденной вещи
+            if (_currentPatrol != null)
+            {
+                _currentPatrol.AddStolenItem(itemName, estimatedValue);
+            }
         }
 
         public void AddArrestDetails(string documentNumber, string issuingAuthority, DateTime dateOfIssue)
         {
-            // Логика для добавления сведений о задержании
+            if (_currentPatrol != null)
+            {
+                _currentPatrol.AddArrestDetails(documentNumber, issuingAuthority, dateOfIssue);
+            }
+        }
+
+        public List<SecurityPatrol> GetAllPatrols()
+        {
+            return _securityPatrolRepository.GetAllPatrols();
         }
     }
 }

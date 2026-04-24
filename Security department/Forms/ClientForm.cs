@@ -1,39 +1,50 @@
-﻿
+﻿using Security_department.DTOs;
+using Security_department.Presenters.Interface;
+using Security_department.Views;
+using System;
+using System.Windows.Forms;
+
 namespace Security_department.Forms
 {
-    using Security_department.DTOs;
-    using Security_department.Presenters.Interface;
-    using Security_department.Views;
-    using System;
-    using System.Windows.Forms;
-    using Newtonsoft.Json;
-    using System.IO;
-
     public partial class ClientForm : Form, IClientView
     {
-        private readonly IClientPresenter _clientPresenter;
-        private const string JsonFilePath = "clients.json";
+        private IClientPresenter _clientPresenter;
 
-        public ClientForm(IClientPresenter clientPresenter)
+        public ClientForm()
         {
             InitializeComponent();
+        }
+
+        public void SetPresenter(IClientPresenter clientPresenter)
+        {
             _clientPresenter = clientPresenter;
             LoadClients();
         }
 
         private void LoadClients()
         {
-            var clients = _clientPresenter.GetAllClients();
             dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.Columns.Add("Id", "ID");
+            dataGridView1.Columns.Add("FirstName", "Имя");
+            dataGridView1.Columns.Add("SecondName", "Фамилия");
+            dataGridView1.Columns.Add("Surname", "Отчество");
+            dataGridView1.Columns.Add("Address", "Адрес");
+            dataGridView1.Columns.Add("Phone", "Телефон");
+            dataGridView1.Columns.Add("PassportNumber", "Паспорт");
+
+            var clients = _clientPresenter.GetAllClients();
             foreach (var client in clients)
             {
-                dataGridView1.Rows.Add(client.Id, client.FirstName, client.SecondName, client.Surname, client.Address, client.Phone, client.Passport.PassportNumber);
+                dataGridView1.Rows.Add(client.Id, client.FirstName, client.SecondName, client.Surname,
+                                      client.Address, client.Phone, client.Passport.PassportNumber);
             }
         }
 
         public int Id
         {
-            get => int.Parse(txtId.Text);
+            get => int.TryParse(txtId.Text, out var id) ? id : 0;
             set => txtId.Text = value.ToString();
         }
 
@@ -104,29 +115,6 @@ namespace Security_department.Forms
             dtpDateOfExpiry.Value = DateTime.Now.AddYears(10);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var clientDto = new ClientDTO
-            {
-                Id = Id,
-                FirstName = FirstName,
-                SecondName = SecondName,
-                Surname = Surname,
-                Address = Address,
-                Phone = Phone,
-                Passport = Passport
-            };
-            _clientPresenter.AddClient(clientDto);
-            ClearFields();
-            SaveClientsToJson();
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            _clientPresenter.RemoveClient(Id);
-            ClearFields();
-            SaveClientsToJson();
-        }
         public void ClearClientList()
         {
             dataGridView1.Rows.Clear();
@@ -134,31 +122,73 @@ namespace Security_department.Forms
 
         public void AddClientToList(ClientDTO client)
         {
-            dataGridView1.Rows.Add(client.Id, client.FirstName, client.SecondName, client.Surname, client.Address, client.Phone, client.Passport.PassportNumber);
-        }
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            var clientDto = new ClientDTO
-            {
-                Id = Id,
-                FirstName = FirstName,
-                SecondName = SecondName,
-                Surname = Surname,
-                Address = Address,
-                Phone = Phone,
-                Passport = Passport
-            };
-            _clientPresenter.UpdateClient(clientDto);
-            ClearFields();
-            SaveClientsToJson();
+            dataGridView1.Rows.Add(client.Id, client.FirstName, client.SecondName, client.Surname,
+                                  client.Address, client.Phone, client.Passport.PassportNumber);
         }
 
-        private void SaveClientsToJson()
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            var clients = _clientPresenter.GetAllClients();
-            var json = JsonConvert.SerializeObject(clients, Formatting.Indented);
-            File.WriteAllText(JsonFilePath, json);
-            ShowMessage("Данные успешно сохранены в JSON.");
+            try
+            {
+                var clientDto = new ClientDTO
+                {
+                    Id = Id,
+                    FirstName = FirstName,
+                    SecondName = SecondName,
+                    Surname = Surname,
+                    Address = Address,
+                    Phone = Phone,
+                    Passport = Passport
+                };
+                _clientPresenter.AddClient(clientDto);
+                ClearFields();
+                LoadClients();
+                ShowMessage("Клиент успешно добавлен.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _clientPresenter.RemoveClient(Id);
+                ClearFields();
+                LoadClients();
+                ShowMessage("Клиент успешно удален.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var clientDto = new ClientDTO
+                {
+                    Id = Id,
+                    FirstName = FirstName,
+                    SecondName = SecondName,
+                    Surname = Surname,
+                    Address = Address,
+                    Phone = Phone,
+                    Passport = Passport
+                };
+                _clientPresenter.UpdateClient(clientDto);
+                ClearFields();
+                LoadClients();
+                ShowMessage("Клиент успешно обновлен.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
     }
 }

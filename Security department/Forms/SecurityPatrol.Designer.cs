@@ -47,32 +47,35 @@
             this.txtIssuingAuthority = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dtpDateOfIssue = new System.Windows.Forms.DateTimePicker();
+            this.btnExecutePatrol = new System.Windows.Forms.Button();
+            this.btnAddStolenItem = new System.Windows.Forms.Button();
+            this.btnAddArrestDetails = new System.Windows.Forms.Button();
+            this.comboBoxContracts = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrols)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewPatrols
             // 
             this.dataGridViewPatrols.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatrols.Location = new System.Drawing.Point(16, 15);
-            this.dataGridViewPatrols.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewPatrols.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewPatrols.Name = "dataGridViewPatrols";
-            this.dataGridViewPatrols.RowHeadersWidth = 51;
             this.dataGridViewPatrols.Size = new System.Drawing.Size(424, 524);
             this.dataGridViewPatrols.TabIndex = 0;
             // 
             // txtCrewNumber
             // 
-            this.txtCrewNumber.Location = new System.Drawing.Point(611, 26);
+            this.txtCrewNumber.Location = new System.Drawing.Point(611, 45);
             this.txtCrewNumber.Name = "txtCrewNumber";
-            this.txtCrewNumber.Size = new System.Drawing.Size(100, 22);
+            this.txtCrewNumber.Size = new System.Drawing.Size(100, 20);
             this.txtCrewNumber.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(487, 32);
+            this.label1.Location = new System.Drawing.Point(487, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 16);
+            this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Номер экипажа";
             // 
@@ -81,47 +84,47 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(487, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 16);
+            this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Имя командира";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtCommanderName
             // 
-            this.txtCommanderName.Location = new System.Drawing.Point(611, 69);
+            this.txtCommanderName.Location = new System.Drawing.Point(611, 72);
             this.txtCommanderName.Name = "txtCommanderName";
-            this.txtCommanderName.Size = new System.Drawing.Size(100, 22);
+            this.txtCommanderName.Size = new System.Drawing.Size(100, 20);
             this.txtCommanderName.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(487, 118);
+            this.label3.Location = new System.Drawing.Point(487, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 16);
+            this.label3.Size = new System.Drawing.Size(117, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Причина вызова";
             // 
             // txtCallReason
             // 
-            this.txtCallReason.Location = new System.Drawing.Point(611, 112);
+            this.txtCallReason.Location = new System.Drawing.Point(611, 99);
             this.txtCallReason.Name = "txtCallReason";
-            this.txtCallReason.Size = new System.Drawing.Size(100, 22);
+            this.txtCallReason.Size = new System.Drawing.Size(100, 20);
             this.txtCallReason.TabIndex = 5;
             // 
             // dtpDepartureDateTime
             // 
-            this.dtpDepartureDateTime.Location = new System.Drawing.Point(638, 158);
+            this.dtpDepartureDateTime.Location = new System.Drawing.Point(611, 126);
             this.dtpDepartureDateTime.Name = "dtpDepartureDateTime";
-            this.dtpDepartureDateTime.Size = new System.Drawing.Size(200, 22);
+            this.dtpDepartureDateTime.Size = new System.Drawing.Size(200, 20);
             this.dtpDepartureDateTime.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(487, 163);
+            this.label4.Location = new System.Drawing.Point(487, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 16);
+            this.label4.Size = new System.Drawing.Size(118, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Дата и время выезда";
             // 
@@ -130,32 +133,31 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(487, 219);
             this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label5.Size = new System.Drawing.Size(121, 16);
+            this.label5.Size = new System.Drawing.Size(121, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "Украденная вещь";
             // 
             // txtStolenItemName
             // 
-            this.txtStolenItemName.Location = new System.Drawing.Point(611, 213);
+            this.txtStolenItemName.Location = new System.Drawing.Point(611, 216);
             this.txtStolenItemName.Name = "txtStolenItemName";
-            this.txtStolenItemName.Size = new System.Drawing.Size(100, 22);
+            this.txtStolenItemName.Size = new System.Drawing.Size(100, 20);
             this.txtStolenItemName.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(487, 257);
+            this.label6.Location = new System.Drawing.Point(487, 246);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 16);
+            this.label6.Size = new System.Drawing.Size(129, 13);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Количество вещей";
+            this.label6.Text = "Оценочная стоимость";
             // 
             // txtStolenItemValue
             // 
-            this.txtStolenItemValue.Location = new System.Drawing.Point(611, 251);
+            this.txtStolenItemValue.Location = new System.Drawing.Point(611, 243);
             this.txtStolenItemValue.Name = "txtStolenItemValue";
-            this.txtStolenItemValue.Size = new System.Drawing.Size(100, 22);
+            this.txtStolenItemValue.Size = new System.Drawing.Size(100, 20);
             this.txtStolenItemValue.TabIndex = 11;
             // 
             // label7
@@ -163,54 +165,106 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(487, 318);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 16);
+            this.label7.Size = new System.Drawing.Size(124, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Номер документа";
             // 
             // txtDocumentNumber
             // 
-            this.txtDocumentNumber.Location = new System.Drawing.Point(681, 315);
+            this.txtDocumentNumber.Location = new System.Drawing.Point(611, 315);
             this.txtDocumentNumber.Name = "txtDocumentNumber";
-            this.txtDocumentNumber.Size = new System.Drawing.Size(100, 22);
+            this.txtDocumentNumber.Size = new System.Drawing.Size(100, 20);
             this.txtDocumentNumber.TabIndex = 13;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(487, 343);
+            this.label8.Location = new System.Drawing.Point(487, 345);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(182, 16);
+            this.label8.Size = new System.Drawing.Size(118, 13);
             this.label8.TabIndex = 16;
             this.label8.Text = "Орган выдавший документ";
             // 
             // txtIssuingAuthority
             // 
-            this.txtIssuingAuthority.Location = new System.Drawing.Point(681, 340);
+            this.txtIssuingAuthority.Location = new System.Drawing.Point(611, 342);
             this.txtIssuingAuthority.Name = "txtIssuingAuthority";
-            this.txtIssuingAuthority.Size = new System.Drawing.Size(100, 22);
+            this.txtIssuingAuthority.Size = new System.Drawing.Size(100, 20);
             this.txtIssuingAuthority.TabIndex = 15;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(487, 371);
+            this.label9.Location = new System.Drawing.Point(487, 373);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 16);
+            this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 18;
             this.label9.Text = "Дата выдачи";
             // 
             // dtpDateOfIssue
             // 
-            this.dtpDateOfIssue.Location = new System.Drawing.Point(584, 366);
+            this.dtpDateOfIssue.Location = new System.Drawing.Point(611, 369);
             this.dtpDateOfIssue.Name = "dtpDateOfIssue";
-            this.dtpDateOfIssue.Size = new System.Drawing.Size(200, 22);
+            this.dtpDateOfIssue.Size = new System.Drawing.Size(200, 20);
             this.dtpDateOfIssue.TabIndex = 19;
+            // 
+            // btnExecutePatrol
+            // 
+            this.btnExecutePatrol.Location = new System.Drawing.Point(490, 420);
+            this.btnExecutePatrol.Name = "btnExecutePatrol";
+            this.btnExecutePatrol.Size = new System.Drawing.Size(100, 40);
+            this.btnExecutePatrol.TabIndex = 20;
+            this.btnExecutePatrol.Text = "Выполнить патруль";
+            this.btnExecutePatrol.UseVisualStyleBackColor = true;
+            this.btnExecutePatrol.Click += new System.EventHandler(this.btnExecutePatrol_Click);
+            // 
+            // btnAddStolenItem
+            // 
+            this.btnAddStolenItem.Location = new System.Drawing.Point(611, 420);
+            this.btnAddStolenItem.Name = "btnAddStolenItem";
+            this.btnAddStolenItem.Size = new System.Drawing.Size(100, 40);
+            this.btnAddStolenItem.TabIndex = 21;
+            this.btnAddStolenItem.Text = "Добавить вещь";
+            this.btnAddStolenItem.UseVisualStyleBackColor = true;
+            this.btnAddStolenItem.Click += new System.EventHandler(this.btnAddStolenItem_Click);
+            // 
+            // btnAddArrestDetails
+            // 
+            this.btnAddArrestDetails.Location = new System.Drawing.Point(730, 420);
+            this.btnAddArrestDetails.Name = "btnAddArrestDetails";
+            this.btnAddArrestDetails.Size = new System.Drawing.Size(100, 40);
+            this.btnAddArrestDetails.TabIndex = 22;
+            this.btnAddArrestDetails.Text = "Добавить задержание";
+            this.btnAddArrestDetails.UseVisualStyleBackColor = true;
+            this.btnAddArrestDetails.Click += new System.EventHandler(this.btnAddArrestDetails_Click);
+            // 
+            // comboBoxContracts
+            // 
+            this.comboBoxContracts.FormattingEnabled = true;
+            this.comboBoxContracts.Location = new System.Drawing.Point(611, 175);
+            this.comboBoxContracts.Name = "comboBoxContracts";
+            this.comboBoxContracts.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxContracts.TabIndex = 23;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(487, 178);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Контракт";
             // 
             // SecurityPatrolForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(900, 548);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.comboBoxContracts);
+            this.Controls.Add(this.btnAddArrestDetails);
+            this.Controls.Add(this.btnAddStolenItem);
+            this.Controls.Add(this.btnExecutePatrol);
             this.Controls.Add(this.dtpDateOfIssue);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -230,9 +284,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCrewNumber);
             this.Controls.Add(this.dataGridViewPatrols);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SecurityPatrolForm";
-            this.Text = "SecurityPatrol";
+            this.Text = "Патрули";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrols)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,5 +313,10 @@
         private System.Windows.Forms.TextBox txtIssuingAuthority;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtpDateOfIssue;
+        private System.Windows.Forms.Button btnExecutePatrol;
+        private System.Windows.Forms.Button btnAddStolenItem;
+        private System.Windows.Forms.Button btnAddArrestDetails;
+        private System.Windows.Forms.ComboBox comboBoxContracts;
+        private System.Windows.Forms.Label label10;
     }
 }

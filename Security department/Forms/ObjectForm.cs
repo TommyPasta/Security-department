@@ -8,33 +8,84 @@ namespace Security_department.Forms
 {
     public partial class ObjectForm : Form, IObjectView
     {
-        private readonly IObjectPresenter _objectPresenter;
+        private IObjectPresenter _objectPresenter;
 
-        public ObjectForm(IObjectPresenter objectPresenter)
+        public ObjectForm()
         {
             InitializeComponent();
-            _objectPresenter = objectPresenter;
-            LoadObjects(); // Загрузка объектов при инициализации формы
         }
 
-        public int Id { get => int.Parse(txtId.Text); set => txtId.Text = value.ToString(); }
-        public string Address { get => txtAddress.Text; set => txtAddress.Text = value; }
-        public int Floor { get => int.Parse(txtFloor.Text); set => txtFloor.Text = value.ToString(); }
-        public string EntranceCode { get => txtEntranceCode.Text; set => txtEntranceCode.Text = value; }
-        public bool HasEntranceCode { get => chkHasEntranceCode.Checked; set => chkHasEntranceCode.Checked = value; }
-        public string HouseType { get => txtHouseType.Text; set => txtHouseType.Text = value; }
-        public int TotalFloors { get => int.Parse(txtTotalFloors.Text); set => txtTotalFloors.Text = value.ToString(); }
-        public string DoorType { get => txtDoorType.Text; set => txtDoorType.Text = value; }
-        public string BalconyType { get => txtBalconyType.Text; set => txtBalconyType.Text = value; }
-        public string ApartmentPlan { get => txtApartmentPlan.Text; set => txtApartmentPlan.Text = value; }
+        public void SetPresenter(IObjectPresenter objectPresenter)
+        {
+            _objectPresenter = objectPresenter;
+            LoadObjects();
+        }
 
-        // Методы для отображения сообщений
+        public int Id
+        {
+            get => int.TryParse(txtId.Text, out var id) ? id : 0;
+            set => txtId.Text = value.ToString();
+        }
+
+        public string Address
+        {
+            get => txtAddress.Text;
+            set => txtAddress.Text = value;
+        }
+
+        public int Floor
+        {
+            get => int.TryParse(txtFloor.Text, out var floor) ? floor : 0;
+            set => txtFloor.Text = value.ToString();
+        }
+
+        public string EntranceCode
+        {
+            get => txtEntranceCode.Text;
+            set => txtEntranceCode.Text = value;
+        }
+
+        public bool HasEntranceCode
+        {
+            get => chkHasEntranceCode.Checked;
+            set => chkHasEntranceCode.Checked = value;
+        }
+
+        public string HouseType
+        {
+            get => txtHouseType.Text;
+            set => txtHouseType.Text = value;
+        }
+
+        public int TotalFloors
+        {
+            get => int.TryParse(txtTotalFloors.Text, out var floors) ? floors : 0;
+            set => txtTotalFloors.Text = value.ToString();
+        }
+
+        public string DoorType
+        {
+            get => txtDoorType.Text;
+            set => txtDoorType.Text = value;
+        }
+
+        public string BalconyType
+        {
+            get => txtBalconyType.Text;
+            set => txtBalconyType.Text = value;
+        }
+
+        public string ApartmentPlan
+        {
+            get => txtApartmentPlan.Text;
+            set => txtApartmentPlan.Text = value;
+        }
+
         public void ShowMessage(string message)
         {
             MessageBox.Show(message);
         }
 
-        // Метод для очистки полей ввода
         public void ClearFields()
         {
             txtId.Clear();
@@ -49,7 +100,6 @@ namespace Security_department.Forms
             txtApartmentPlan.Clear();
         }
 
-        // Метод для загрузки объектов в представление
         public void LoadObjects()
         {
             var objects = _objectPresenter.LoadObjects();
@@ -61,7 +111,6 @@ namespace Security_department.Forms
             }
         }
 
-        // Метод для добавления объекта в список
         public void AddObjectToList(ObjectDTO objectDto)
         {
             dataGridView1.Rows.Add(objectDto.Id, objectDto.Address, objectDto.Floor, objectDto.EntranceCode,
@@ -69,77 +118,89 @@ namespace Security_department.Forms
                                     objectDto.DoorType, objectDto.BalconyType, objectDto.ApartmentPlan);
         }
 
-        // Метод для очистки списка объектов
         public void ClearObjectList()
         {
             dataGridView1.Rows.Clear();
         }
 
-        // Обработчики событий для кнопок
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Создаем новый объект DTO на основе введенных данных
-            var objectDto = new ObjectDTO
+            try
             {
-                Id = Id, // Получаем ID из текстового поля
-                Address = Address, // Получаем адрес из текстового поля
-                Floor = Floor, // Получаем этаж из текстового поля
-                EntranceCode = EntranceCode, // Получаем код замка из текстового поля
-                HasEntranceCode = HasEntranceCode, // Получаем состояние замка из чекбокса
-                HouseType = HouseType, // Получаем тип дома из текстового поля
-                TotalFloors = TotalFloors, // Получаем общее количество этажей из текстового поля
-                DoorType = DoorType, // Получаем тип двери из текстового поля
-                BalconyType = BalconyType, // Получаем тип балкона из текстового поля
-                ApartmentPlan = ApartmentPlan // Получаем план квартиры из текстового поля
-            };
+                var objectDto = new ObjectDTO
+                {
+                    Id = Id,
+                    Address = Address,
+                    Floor = Floor,
+                    EntranceCode = EntranceCode,
+                    HasEntranceCode = HasEntranceCode,
+                    HouseType = HouseType,
+                    TotalFloors = TotalFloors,
+                    DoorType = DoorType,
+                    BalconyType = BalconyType,
+                    ApartmentPlan = ApartmentPlan
+                };
 
-            // Вызываем метод добавления объекта в Presenter
-            _objectPresenter.AddObject(objectDto);
-
-            // Очищаем поля ввода и обновляем список объектов
-            ClearFields();
-            LoadObjects();
+                _objectPresenter.AddObject(objectDto);
+                ClearFields();
+                LoadObjects();
+                ShowMessage("Объект успешно добавлен.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // Создаем объект DTO на основе введенных данных
-            var objectDto = new ObjectDTO
+            try
             {
-                Id = Id, // Получаем ID из текстового поля
-                Address = Address, // Получаем адрес из текстового поля
-                Floor = Floor, // Получаем этаж из текстового поля
-                EntranceCode = EntranceCode, // Получаем код замка из текстового поля
-                HasEntranceCode = HasEntranceCode, // Получаем состояние замка из чекбокса
-                HouseType = HouseType, // Получаем тип дома из текстового поля
-                TotalFloors = TotalFloors, // Получаем общее количество этажей из текстового поля
-                DoorType = DoorType, // Получаем тип двери из текстового поля
-                BalconyType = BalconyType, // Получаем тип балкона из текстового поля
-                ApartmentPlan = ApartmentPlan // Получаем план квартиры из текстового поля
-            };
+                var objectDto = new ObjectDTO
+                {
+                    Id = Id,
+                    Address = Address,
+                    Floor = Floor,
+                    EntranceCode = EntranceCode,
+                    HasEntranceCode = HasEntranceCode,
+                    HouseType = HouseType,
+                    TotalFloors = TotalFloors,
+                    DoorType = DoorType,
+                    BalconyType = BalconyType,
+                    ApartmentPlan = ApartmentPlan
+                };
 
-            // Вызываем метод обновления объекта в Presenter
-            _objectPresenter.UpdateObject(objectDto);
-
-            // Очищаем поля ввода и обновляем список объектов
-            ClearFields();
-            LoadObjects();
+                _objectPresenter.UpdateObject(objectDto);
+                ClearFields();
+                LoadObjects();
+                ShowMessage("Объект успешно обновлен.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            _objectPresenter.RemoveObject(Id);
-            ClearFields();
-            LoadObjects();
+            try
+            {
+                _objectPresenter.RemoveObject(Id);
+                ClearFields();
+                LoadObjects();
+                ShowMessage("Объект успешно удален.");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Ошибка: {ex.Message}");
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Проверка, что строка выбрана
+            if (e.RowIndex >= 0)
             {
                 var row = dataGridView1.Rows[e.RowIndex];
-
-                // Заполнение полей формы данными из выбранной строки
                 Id = Convert.ToInt32(row.Cells["Id"].Value);
                 Address = row.Cells["Address"].Value.ToString();
                 Floor = Convert.ToInt32(row.Cells["Floor"].Value);
@@ -152,6 +213,5 @@ namespace Security_department.Forms
                 ApartmentPlan = row.Cells["ApartmentPlan"].Value.ToString();
             }
         }
-
     }
 }
