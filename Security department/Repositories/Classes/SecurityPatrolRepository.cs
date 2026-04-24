@@ -2,12 +2,29 @@
 using Security_department.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.IO;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace Security_department.Repositories.Classes
 {
     public class SecurityPatrolRepository : ISecurityPatrolRepository
     {
         private readonly string filePath = "patrols.json";
+
+        private JsonSerializerSettings GetSerializerSettings()
+        {
+            var settings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                Converters = new List<JsonConverter>
+                {
+                    new StolenItemConverter(),
+                    new ArrestDetailsConverter(),
+                    new ObjectConverter(),
+                    new ContractConverter()
+                }
+            };
+            return settings;
+        }
 
         public void AddPatrol(SecurityPatrol patrol)
         {
@@ -22,7 +39,8 @@ namespace Security_department.Repositories.Classes
                 return new List<SecurityPatrol>();
 
             var json = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<List<SecurityPatrol>>(json) ?? new List<SecurityPatrol>();
+            var settings = GetSerializerSettings();
+            return JsonConvert.DeserializeObject<List<SecurityPatrol>>(json, settings) ?? new List<SecurityPatrol>();
         }
 
         public SecurityPatrol GetPatrolById(int id)
@@ -33,7 +51,8 @@ namespace Security_department.Repositories.Classes
 
         private void SavePatrols(List<SecurityPatrol> patrols)
         {
-            var json = JsonConvert.SerializeObject(patrols, Formatting.Indented);
+            var settings = GetSerializerSettings();
+            var json = JsonConvert.SerializeObject(patrols, settings);
             File.WriteAllText(filePath, json);
         }
     }

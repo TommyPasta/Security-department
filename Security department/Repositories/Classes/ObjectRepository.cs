@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using Security_department;
-
+using Newtonsoft.Json;
+using Formatting = Newtonsoft.Json.Formatting;
 public class ObjectRepository : IObjectRepository
 {
     private readonly string filePath = "objects.json";
+
+    private JsonSerializerSettings GetSerializerSettings()
+    {
+        var settings = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented
+        };
+        return settings;
+    }
 
     public void Add(Object obj)
     {
         var objects = GetAll();
         objects.Add(obj);
-        File.WriteAllText(filePath, JsonSerializer.Serialize(objects, new JsonSerializerOptions { WriteIndented = true }));
+        SaveObjects(objects);
     }
 
     public void Remove(int id)
@@ -22,7 +32,7 @@ public class ObjectRepository : IObjectRepository
         if (objectToRemove != null)
         {
             objects.Remove(objectToRemove);
-            File.WriteAllText(filePath, JsonSerializer.Serialize(objects, new JsonSerializerOptions { WriteIndented = true }));
+            SaveObjects(objects);
         }
     }
 
@@ -38,21 +48,27 @@ public class ObjectRepository : IObjectRepository
             return new List<Object>();
 
         var json = File.ReadAllText(filePath);
-        return JsonSerializer.Deserialize<List<Object>>(json);
+        var settings = GetSerializerSettings();
+        return JsonConvert.DeserializeObject<List<Object>>(json, settings) ?? new List<Object>();
     }
 
-    public void Update(Object obj) // Реализация метода Update
+    public void Update(Object obj)
     {
         var objects = GetAll();
         var existingObject = objects.Find(o => o.Id == obj.Id);
         if (existingObject != null)
         {
-            // Обновляем данные существующего объекта
             existingObject.Update(obj.Address, obj.Floor, obj.EntranceCode, obj.HasEntranceCode,
                                   obj.HouseType, obj.TotalFloors, obj.DoorType, obj.BalconyType,
                                   obj.ApartmentPlan);
-            // Сохраняем изменения в файл
-            File.WriteAllText(filePath, JsonSerializer.Serialize(objects, new JsonSerializerOptions { WriteIndented = true }));
+            SaveObjects(objects);
         }
+    }
+
+    private void SaveObjects(List<Object> objects)
+    {
+        var settings = GetSerializerSettings();
+        var json = JsonConvert.SerializeObject(objects, settings);
+        File.WriteAllText(filePath, json);
     }
 }

@@ -38,7 +38,7 @@ namespace Security_department.Forms
             foreach (var client in clients)
             {
                 dataGridView1.Rows.Add(client.Id, client.FirstName, client.SecondName, client.Surname,
-                                      client.Address, client.Phone, client.Passport.PassportNumber);
+                                      client.Address, client.Phone, client.Passport?.PassportNumber);
             }
         }
 
@@ -89,10 +89,10 @@ namespace Security_department.Forms
             };
             set
             {
-                txtPassportNumber.Text = value.PassportNumber;
-                txtIssuingAuthority.Text = value.IssuingAuthority;
-                dtpDateOfIssue.Value = value.DateOfIssue;
-                dtpDateOfExpiry.Value = value.DateOfExpiry;
+                txtPassportNumber.Text = value?.PassportNumber;
+                txtIssuingAuthority.Text = value?.IssuingAuthority;
+                dtpDateOfIssue.Value = value?.DateOfIssue ?? DateTime.Now;
+                dtpDateOfExpiry.Value = value?.DateOfExpiry ?? DateTime.Now.AddYears(10);
             }
         }
 
@@ -123,7 +123,7 @@ namespace Security_department.Forms
         public void AddClientToList(ClientDTO client)
         {
             dataGridView1.Rows.Add(client.Id, client.FirstName, client.SecondName, client.Surname,
-                                  client.Address, client.Phone, client.Passport.PassportNumber);
+                                  client.Address, client.Phone, client.Passport?.PassportNumber);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
