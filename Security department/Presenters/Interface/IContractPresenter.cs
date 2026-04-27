@@ -13,5 +13,6 @@ namespace Security_department.Presenters.Interface
         void AddContract(ContractDTO contractDto);
         void RemoveContract(int id);
         void UpdateContract(ContractDTO contractDto);
+        List<ContractDTO> GetAllContracts();  // Добавляем этот метод
     }
 }

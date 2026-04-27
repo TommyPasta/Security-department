@@ -2,15 +2,8 @@
 {
     partial class ObjectForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -39,250 +26,247 @@
             this.txtBalconyType = new System.Windows.Forms.TextBox();
             this.txtApartmentPlan = new System.Windows.Forms.TextBox();
             this.chkHasEntranceCode = new System.Windows.Forms.CheckBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+
+            this.lblId = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblFloor = new System.Windows.Forms.Label();
+            this.lblEntranceCode = new System.Windows.Forms.Label();
+            this.lblHouseType = new System.Windows.Forms.Label();
+            this.lblTotalFloors = new System.Windows.Forms.Label();
+            this.lblDoorType = new System.Windows.Forms.Label();
+            this.lblBalconyType = new System.Windows.Forms.Label();
+            this.lblApartmentPlan = new System.Windows.Forms.Label();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
+
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(418, 426);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Size = new System.Drawing.Size(500, 500);
+
+            // 
+            // lblId
+            // 
+            this.lblId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(530, 15);
+            this.lblId.Text = "ID объекта:";
+
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(673, 26);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 1;
+            this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtId.Location = new System.Drawing.Point(650, 12);
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(150, 20);
+
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(530, 45);
+            this.lblAddress.Text = "Адрес:";
+
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(673, 62);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(100, 20);
-            this.txtAddress.TabIndex = 2;
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAddress.Location = new System.Drawing.Point(650, 42);
+            this.txtAddress.Size = new System.Drawing.Size(200, 20);
+
+            // 
+            // lblFloor
+            // 
+            this.lblFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFloor.AutoSize = true;
+            this.lblFloor.Location = new System.Drawing.Point(530, 75);
+            this.lblFloor.Text = "Этаж:";
+
             // 
             // txtFloor
             // 
-            this.txtFloor.Location = new System.Drawing.Point(673, 98);
-            this.txtFloor.Name = "txtFloor";
-            this.txtFloor.Size = new System.Drawing.Size(100, 20);
-            this.txtFloor.TabIndex = 3;
+            this.txtFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFloor.Location = new System.Drawing.Point(650, 72);
+            this.txtFloor.Size = new System.Drawing.Size(60, 20);
+
+            // 
+            // lblEntranceCode
+            // 
+            this.lblEntranceCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEntranceCode.AutoSize = true;
+            this.lblEntranceCode.Location = new System.Drawing.Point(530, 105);
+            this.lblEntranceCode.Text = "Код замка:";
+
             // 
             // txtEntranceCode
             // 
-            this.txtEntranceCode.Location = new System.Drawing.Point(673, 134);
-            this.txtEntranceCode.Name = "txtEntranceCode";
+            this.txtEntranceCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEntranceCode.Location = new System.Drawing.Point(650, 102);
             this.txtEntranceCode.Size = new System.Drawing.Size(100, 20);
-            this.txtEntranceCode.TabIndex = 4;
-            // 
-            // txtHouseType
-            // 
-            this.txtHouseType.Location = new System.Drawing.Point(673, 170);
-            this.txtHouseType.Name = "txtHouseType";
-            this.txtHouseType.Size = new System.Drawing.Size(100, 20);
-            this.txtHouseType.TabIndex = 5;
-            // 
-            // txtTotalFloors
-            // 
-            this.txtTotalFloors.Location = new System.Drawing.Point(673, 205);
-            this.txtTotalFloors.Name = "txtTotalFloors";
-            this.txtTotalFloors.Size = new System.Drawing.Size(100, 20);
-            this.txtTotalFloors.TabIndex = 6;
-            // 
-            // txtDoorType
-            // 
-            this.txtDoorType.Location = new System.Drawing.Point(673, 239);
-            this.txtDoorType.Name = "txtDoorType";
-            this.txtDoorType.Size = new System.Drawing.Size(100, 20);
-            this.txtDoorType.TabIndex = 7;
-            // 
-            // txtBalconyType
-            // 
-            this.txtBalconyType.Location = new System.Drawing.Point(673, 277);
-            this.txtBalconyType.Name = "txtBalconyType";
-            this.txtBalconyType.Size = new System.Drawing.Size(100, 20);
-            this.txtBalconyType.TabIndex = 8;
-            // 
-            // txtApartmentPlan
-            // 
-            this.txtApartmentPlan.Location = new System.Drawing.Point(673, 313);
-            this.txtApartmentPlan.Name = "txtApartmentPlan";
-            this.txtApartmentPlan.Size = new System.Drawing.Size(100, 20);
-            this.txtApartmentPlan.TabIndex = 9;
+
             // 
             // chkHasEntranceCode
             // 
+            this.chkHasEntranceCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkHasEntranceCode.AutoSize = true;
-            this.chkHasEntranceCode.Location = new System.Drawing.Point(468, 136);
-            this.chkHasEntranceCode.Name = "chkHasEntranceCode";
-            this.chkHasEntranceCode.Size = new System.Drawing.Size(106, 17);
-            this.chkHasEntranceCode.TabIndex = 10;
-            this.chkHasEntranceCode.Text = "Кодовый замок";
-            this.chkHasEntranceCode.UseVisualStyleBackColor = true;
+            this.chkHasEntranceCode.Location = new System.Drawing.Point(533, 132);
+            this.chkHasEntranceCode.Text = "Есть кодовый замок";
+
             // 
-            // btnUpdate
+            // lblHouseType
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(536, 402);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 27;
-            this.btnUpdate.Text = "Обновить";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.lblHouseType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblHouseType.AutoSize = true;
+            this.lblHouseType.Location = new System.Drawing.Point(530, 160);
+            this.lblHouseType.Text = "Тип дома:";
+
             // 
-            // btnRemove
+            // txtHouseType
             // 
-            this.btnRemove.Location = new System.Drawing.Point(617, 402);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 26;
-            this.btnRemove.Text = "Удалить";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.txtHouseType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHouseType.Location = new System.Drawing.Point(650, 157);
+            this.txtHouseType.Size = new System.Drawing.Size(150, 20);
+
+            // 
+            // lblTotalFloors
+            // 
+            this.lblTotalFloors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalFloors.AutoSize = true;
+            this.lblTotalFloors.Location = new System.Drawing.Point(530, 190);
+            this.lblTotalFloors.Text = "Всего этажей:";
+
+            // 
+            // txtTotalFloors
+            // 
+            this.txtTotalFloors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalFloors.Location = new System.Drawing.Point(650, 187);
+            this.txtTotalFloors.Size = new System.Drawing.Size(60, 20);
+
+            // 
+            // lblDoorType
+            // 
+            this.lblDoorType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDoorType.AutoSize = true;
+            this.lblDoorType.Location = new System.Drawing.Point(530, 220);
+            this.lblDoorType.Text = "Тип двери:";
+
+            // 
+            // txtDoorType
+            // 
+            this.txtDoorType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDoorType.Location = new System.Drawing.Point(650, 217);
+            this.txtDoorType.Size = new System.Drawing.Size(150, 20);
+
+            // 
+            // lblBalconyType
+            // 
+            this.lblBalconyType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBalconyType.AutoSize = true;
+            this.lblBalconyType.Location = new System.Drawing.Point(530, 250);
+            this.lblBalconyType.Text = "Тип балкона:";
+
+            // 
+            // txtBalconyType
+            // 
+            this.txtBalconyType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBalconyType.Location = new System.Drawing.Point(650, 247);
+            this.txtBalconyType.Size = new System.Drawing.Size(150, 20);
+
+            // 
+            // lblApartmentPlan
+            // 
+            this.lblApartmentPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblApartmentPlan.AutoSize = true;
+            this.lblApartmentPlan.Location = new System.Drawing.Point(530, 280);
+            this.lblApartmentPlan.Text = "План квартиры:";
+
+            // 
+            // txtApartmentPlan
+            // 
+            this.txtApartmentPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtApartmentPlan.Location = new System.Drawing.Point(650, 277);
+            this.txtApartmentPlan.Multiline = true;
+            this.txtApartmentPlan.Size = new System.Drawing.Size(200, 80);
+
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(698, 402);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 25;
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(530, 470);
+            this.btnAdd.Size = new System.Drawing.Size(90, 35);
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+
             // 
-            // label1
+            // btnUpdate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(604, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "ID объекта";
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.Location = new System.Drawing.Point(630, 470);
+            this.btnUpdate.Size = new System.Drawing.Size(90, 35);
+            this.btnUpdate.Text = "Обновить";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+
             // 
-            // label2
+            // btnRemove
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(582, 316);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "План квартиры";
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemove.Location = new System.Drawing.Point(730, 470);
+            this.btnRemove.Size = new System.Drawing.Size(90, 35);
+            this.btnRemove.Text = "Удалить";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+
             // 
-            // label3
+            // btnClear
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(612, 173);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "Тип дома";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(596, 280);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
-            this.label4.TabIndex = 31;
-            this.label4.Text = "Тип балкона";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(564, 242);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Тип входной двери";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(596, 208);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 13);
-            this.label6.TabIndex = 33;
-            this.label6.Text = "Тип балкона";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(580, 137);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 13);
-            this.label7.TabIndex = 34;
-            this.label7.Text = "Кодовый замок";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(634, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 13);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "Этаж";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(629, 65);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 13);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "Адрес";
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(530, 510);
+            this.btnClear.Size = new System.Drawing.Size(90, 35);
+            this.btnClear.Text = "Очистить";
+            this.btnClear.UseVisualStyleBackColor = true;
+           // this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+
             // 
             // ObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.chkHasEntranceCode);
-            this.Controls.Add(this.txtApartmentPlan);
-            this.Controls.Add(this.txtBalconyType);
-            this.Controls.Add(this.txtDoorType);
-            this.Controls.Add(this.txtTotalFloors);
-            this.Controls.Add(this.txtHouseType);
-            this.Controls.Add(this.txtEntranceCode);
-            this.Controls.Add(this.txtFloor);
-            this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.txtId);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "ObjectForm";
-            this.Text = "ObjectForm";
+            this.ClientSize = new System.Drawing.Size(870, 560);
+            this.MinimumSize = new System.Drawing.Size(750, 500);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Управление объектами";
+
+            this.Controls.AddRange(new System.Windows.Forms.Control[] {
+                this.dataGridView1,
+                this.lblId, this.txtId,
+                this.lblAddress, this.txtAddress,
+                this.lblFloor, this.txtFloor,
+                this.lblEntranceCode, this.txtEntranceCode,
+                this.chkHasEntranceCode,
+                this.lblHouseType, this.txtHouseType,
+                this.lblTotalFloors, this.txtTotalFloors,
+                this.lblDoorType, this.txtDoorType,
+                this.lblBalconyType, this.txtBalconyType,
+                this.lblApartmentPlan, this.txtApartmentPlan,
+                this.btnAdd, this.btnUpdate, this.btnRemove, this.btnClear
+            });
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
-        #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtId;
@@ -295,17 +279,18 @@
         private System.Windows.Forms.TextBox txtBalconyType;
         private System.Windows.Forms.TextBox txtApartmentPlan;
         private System.Windows.Forms.CheckBox chkHasEntranceCode;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.Label lblFloor;
+        private System.Windows.Forms.Label lblEntranceCode;
+        private System.Windows.Forms.Label lblHouseType;
+        private System.Windows.Forms.Label lblTotalFloors;
+        private System.Windows.Forms.Label lblDoorType;
+        private System.Windows.Forms.Label lblBalconyType;
+        private System.Windows.Forms.Label lblApartmentPlan;
     }
 }

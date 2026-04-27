@@ -2,15 +2,8 @@
 {
     partial class SecurityPatrolForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,303 +13,280 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.dataGridViewPatrols = new System.Windows.Forms.DataGridView();
             this.txtCrewNumber = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtCommanderName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtCallReason = new System.Windows.Forms.TextBox();
-            this.dtpDepartureDateTime = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtStolenItemName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtStolenItemValue = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtDocumentNumber = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtIssuingAuthority = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.dtpDepartureDateTime = new System.Windows.Forms.DateTimePicker();
             this.dtpDateOfIssue = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxContracts = new System.Windows.Forms.ComboBox();
             this.btnExecutePatrol = new System.Windows.Forms.Button();
             this.btnAddStolenItem = new System.Windows.Forms.Button();
             this.btnAddArrestDetails = new System.Windows.Forms.Button();
-            this.comboBoxContracts = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+
+            this.lblContract = new System.Windows.Forms.Label();
+            this.lblCrewNumber = new System.Windows.Forms.Label();
+            this.lblCommanderName = new System.Windows.Forms.Label();
+            this.lblCallReason = new System.Windows.Forms.Label();
+            this.lblDepartureDateTime = new System.Windows.Forms.Label();
+            this.lblStolenItemName = new System.Windows.Forms.Label();
+            this.lblStolenItemValue = new System.Windows.Forms.Label();
+            this.lblDocumentNumber = new System.Windows.Forms.Label();
+            this.lblIssuingAuthority = new System.Windows.Forms.Label();
+            this.lblDateOfIssue = new System.Windows.Forms.Label();
+            this.groupBoxPatrol = new System.Windows.Forms.GroupBox();
+            this.groupBoxStolen = new System.Windows.Forms.GroupBox();
+            this.groupBoxArrest = new System.Windows.Forms.GroupBox();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrols)).BeginInit();
+            this.groupBoxPatrol.SuspendLayout();
+            this.groupBoxStolen.SuspendLayout();
+            this.groupBoxArrest.SuspendLayout();
             this.SuspendLayout();
+
             // 
             // dataGridViewPatrols
             // 
-            this.dataGridViewPatrols.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPatrols.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewPatrols.Location = new System.Drawing.Point(12, 12);
-            this.dataGridViewPatrols.Name = "dataGridViewPatrols";
-            this.dataGridViewPatrols.Size = new System.Drawing.Size(424, 524);
-            this.dataGridViewPatrols.TabIndex = 0;
+            this.dataGridViewPatrols.Size = new System.Drawing.Size(450, 550);
+
             // 
+            // groupBoxPatrol
+            // 
+            this.groupBoxPatrol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxPatrol.Location = new System.Drawing.Point(480, 12);
+            this.groupBoxPatrol.Size = new System.Drawing.Size(320, 170);
+            this.groupBoxPatrol.Text = "Данные патруля";
+
+            // lblContract
+            this.lblContract.AutoSize = true;
+            this.lblContract.Location = new System.Drawing.Point(10, 25);
+            this.lblContract.Text = "Контракт:";
+            this.groupBoxPatrol.Controls.Add(this.lblContract);
+
+            // comboBoxContracts
+            this.comboBoxContracts.Location = new System.Drawing.Point(120, 22);
+            this.comboBoxContracts.Size = new System.Drawing.Size(190, 21);
+            this.comboBoxContracts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.groupBoxPatrol.Controls.Add(this.comboBoxContracts);
+
+            // lblCrewNumber
+            this.lblCrewNumber.AutoSize = true;
+            this.lblCrewNumber.Location = new System.Drawing.Point(10, 55);
+            this.lblCrewNumber.Text = "Номер экипажа:";
+            this.groupBoxPatrol.Controls.Add(this.lblCrewNumber);
+
             // txtCrewNumber
-            // 
-            this.txtCrewNumber.Location = new System.Drawing.Point(611, 45);
-            this.txtCrewNumber.Name = "txtCrewNumber";
-            this.txtCrewNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtCrewNumber.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(487, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Номер экипажа";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(487, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Имя командира";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
+            this.txtCrewNumber.Location = new System.Drawing.Point(120, 52);
+            this.txtCrewNumber.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxPatrol.Controls.Add(this.txtCrewNumber);
+
+            // lblCommanderName
+            this.lblCommanderName.AutoSize = true;
+            this.lblCommanderName.Location = new System.Drawing.Point(10, 85);
+            this.lblCommanderName.Text = "Командир:";
+            this.groupBoxPatrol.Controls.Add(this.lblCommanderName);
+
             // txtCommanderName
-            // 
-            this.txtCommanderName.Location = new System.Drawing.Point(611, 72);
-            this.txtCommanderName.Name = "txtCommanderName";
-            this.txtCommanderName.Size = new System.Drawing.Size(100, 20);
-            this.txtCommanderName.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(487, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Причина вызова";
-            // 
+            this.txtCommanderName.Location = new System.Drawing.Point(120, 82);
+            this.txtCommanderName.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxPatrol.Controls.Add(this.txtCommanderName);
+
+            // lblCallReason
+            this.lblCallReason.AutoSize = true;
+            this.lblCallReason.Location = new System.Drawing.Point(10, 115);
+            this.lblCallReason.Text = "Причина вызова:";
+            this.groupBoxPatrol.Controls.Add(this.lblCallReason);
+
             // txtCallReason
-            // 
-            this.txtCallReason.Location = new System.Drawing.Point(611, 99);
-            this.txtCallReason.Name = "txtCallReason";
-            this.txtCallReason.Size = new System.Drawing.Size(100, 20);
-            this.txtCallReason.TabIndex = 5;
-            // 
+            this.txtCallReason.Location = new System.Drawing.Point(120, 112);
+            this.txtCallReason.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxPatrol.Controls.Add(this.txtCallReason);
+
+            // lblDepartureDateTime
+            this.lblDepartureDateTime.AutoSize = true;
+            this.lblDepartureDateTime.Location = new System.Drawing.Point(10, 145);
+            this.lblDepartureDateTime.Text = "Дата выезда:";
+            this.groupBoxPatrol.Controls.Add(this.lblDepartureDateTime);
+
             // dtpDepartureDateTime
+            this.dtpDepartureDateTime.Location = new System.Drawing.Point(120, 141);
+            this.dtpDepartureDateTime.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxPatrol.Controls.Add(this.dtpDepartureDateTime);
+
             // 
-            this.dtpDepartureDateTime.Location = new System.Drawing.Point(611, 126);
-            this.dtpDepartureDateTime.Name = "dtpDepartureDateTime";
-            this.dtpDepartureDateTime.Size = new System.Drawing.Size(200, 20);
-            this.dtpDepartureDateTime.TabIndex = 7;
+            // groupBoxStolen
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(487, 132);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Дата и время выезда";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(487, 219);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(121, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Украденная вещь";
-            // 
+            this.groupBoxStolen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxStolen.Location = new System.Drawing.Point(480, 195);
+            this.groupBoxStolen.Size = new System.Drawing.Size(320, 100);
+            this.groupBoxStolen.Text = "Украденная вещь";
+
+            // lblStolenItemName
+            this.lblStolenItemName.AutoSize = true;
+            this.lblStolenItemName.Location = new System.Drawing.Point(10, 25);
+            this.lblStolenItemName.Text = "Название:";
+            this.groupBoxStolen.Controls.Add(this.lblStolenItemName);
+
             // txtStolenItemName
-            // 
-            this.txtStolenItemName.Location = new System.Drawing.Point(611, 216);
-            this.txtStolenItemName.Name = "txtStolenItemName";
-            this.txtStolenItemName.Size = new System.Drawing.Size(100, 20);
-            this.txtStolenItemName.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(487, 246);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Оценочная стоимость";
-            // 
+            this.txtStolenItemName.Location = new System.Drawing.Point(120, 22);
+            this.txtStolenItemName.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxStolen.Controls.Add(this.txtStolenItemName);
+
+            // lblStolenItemValue
+            this.lblStolenItemValue.AutoSize = true;
+            this.lblStolenItemValue.Location = new System.Drawing.Point(10, 55);
+            this.lblStolenItemValue.Text = "Стоимость:";
+            this.groupBoxStolen.Controls.Add(this.lblStolenItemValue);
+
             // txtStolenItemValue
-            // 
-            this.txtStolenItemValue.Location = new System.Drawing.Point(611, 243);
-            this.txtStolenItemValue.Name = "txtStolenItemValue";
+            this.txtStolenItemValue.Location = new System.Drawing.Point(120, 52);
             this.txtStolenItemValue.Size = new System.Drawing.Size(100, 20);
-            this.txtStolenItemValue.TabIndex = 11;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(487, 318);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Номер документа";
-            // 
-            // txtDocumentNumber
-            // 
-            this.txtDocumentNumber.Location = new System.Drawing.Point(611, 315);
-            this.txtDocumentNumber.Name = "txtDocumentNumber";
-            this.txtDocumentNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtDocumentNumber.TabIndex = 13;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(487, 345);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Орган выдавший документ";
-            // 
-            // txtIssuingAuthority
-            // 
-            this.txtIssuingAuthority.Location = new System.Drawing.Point(611, 342);
-            this.txtIssuingAuthority.Name = "txtIssuingAuthority";
-            this.txtIssuingAuthority.Size = new System.Drawing.Size(100, 20);
-            this.txtIssuingAuthority.TabIndex = 15;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(487, 373);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(73, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Дата выдачи";
-            // 
-            // dtpDateOfIssue
-            // 
-            this.dtpDateOfIssue.Location = new System.Drawing.Point(611, 369);
-            this.dtpDateOfIssue.Name = "dtpDateOfIssue";
-            this.dtpDateOfIssue.Size = new System.Drawing.Size(200, 20);
-            this.dtpDateOfIssue.TabIndex = 19;
-            // 
-            // btnExecutePatrol
-            // 
-            this.btnExecutePatrol.Location = new System.Drawing.Point(490, 420);
-            this.btnExecutePatrol.Name = "btnExecutePatrol";
-            this.btnExecutePatrol.Size = new System.Drawing.Size(100, 40);
-            this.btnExecutePatrol.TabIndex = 20;
-            this.btnExecutePatrol.Text = "Выполнить патруль";
-            this.btnExecutePatrol.UseVisualStyleBackColor = true;
-            this.btnExecutePatrol.Click += new System.EventHandler(this.btnExecutePatrol_Click);
-            // 
+            this.groupBoxStolen.Controls.Add(this.txtStolenItemValue);
+
             // btnAddStolenItem
-            // 
-            this.btnAddStolenItem.Location = new System.Drawing.Point(611, 420);
-            this.btnAddStolenItem.Name = "btnAddStolenItem";
-            this.btnAddStolenItem.Size = new System.Drawing.Size(100, 40);
-            this.btnAddStolenItem.TabIndex = 21;
+            this.btnAddStolenItem.Location = new System.Drawing.Point(120, 75);
+            this.btnAddStolenItem.Size = new System.Drawing.Size(100, 20);
             this.btnAddStolenItem.Text = "Добавить вещь";
             this.btnAddStolenItem.UseVisualStyleBackColor = true;
             this.btnAddStolenItem.Click += new System.EventHandler(this.btnAddStolenItem_Click);
+            this.groupBoxStolen.Controls.Add(this.btnAddStolenItem);
+
             // 
+            // groupBoxArrest
+            // 
+            this.groupBoxArrest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxArrest.Location = new System.Drawing.Point(480, 308);
+            this.groupBoxArrest.Size = new System.Drawing.Size(320, 130);
+            this.groupBoxArrest.Text = "Сведения о задержании";
+
+            // lblDocumentNumber
+            this.lblDocumentNumber.AutoSize = true;
+            this.lblDocumentNumber.Location = new System.Drawing.Point(10, 25);
+            this.lblDocumentNumber.Text = "Номер документа:";
+            this.groupBoxArrest.Controls.Add(this.lblDocumentNumber);
+
+            // txtDocumentNumber
+            this.txtDocumentNumber.Location = new System.Drawing.Point(120, 22);
+            this.txtDocumentNumber.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxArrest.Controls.Add(this.txtDocumentNumber);
+
+            // lblIssuingAuthority
+            this.lblIssuingAuthority.AutoSize = true;
+            this.lblIssuingAuthority.Location = new System.Drawing.Point(10, 55);
+            this.lblIssuingAuthority.Text = "Кем выдан:";
+            this.groupBoxArrest.Controls.Add(this.lblIssuingAuthority);
+
+            // txtIssuingAuthority
+            this.txtIssuingAuthority.Location = new System.Drawing.Point(120, 52);
+            this.txtIssuingAuthority.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxArrest.Controls.Add(this.txtIssuingAuthority);
+
+            // lblDateOfIssue
+            this.lblDateOfIssue.AutoSize = true;
+            this.lblDateOfIssue.Location = new System.Drawing.Point(10, 85);
+            this.lblDateOfIssue.Text = "Дата выдачи:";
+            this.groupBoxArrest.Controls.Add(this.lblDateOfIssue);
+
+            // dtpDateOfIssue
+            this.dtpDateOfIssue.Location = new System.Drawing.Point(120, 81);
+            this.dtpDateOfIssue.Size = new System.Drawing.Size(190, 20);
+            this.groupBoxArrest.Controls.Add(this.dtpDateOfIssue);
+
             // btnAddArrestDetails
-            // 
-            this.btnAddArrestDetails.Location = new System.Drawing.Point(730, 420);
-            this.btnAddArrestDetails.Name = "btnAddArrestDetails";
-            this.btnAddArrestDetails.Size = new System.Drawing.Size(100, 40);
-            this.btnAddArrestDetails.TabIndex = 22;
+            this.btnAddArrestDetails.Location = new System.Drawing.Point(120, 105);
+            this.btnAddArrestDetails.Size = new System.Drawing.Size(120, 20);
             this.btnAddArrestDetails.Text = "Добавить задержание";
             this.btnAddArrestDetails.UseVisualStyleBackColor = true;
             this.btnAddArrestDetails.Click += new System.EventHandler(this.btnAddArrestDetails_Click);
+            this.groupBoxArrest.Controls.Add(this.btnAddArrestDetails);
+
             // 
-            // comboBoxContracts
+            // btnExecutePatrol
             // 
-            this.comboBoxContracts.FormattingEnabled = true;
-            this.comboBoxContracts.Location = new System.Drawing.Point(611, 175);
-            this.comboBoxContracts.Name = "comboBoxContracts";
-            this.comboBoxContracts.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxContracts.TabIndex = 23;
+            this.btnExecutePatrol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExecutePatrol.Location = new System.Drawing.Point(490, 460);
+            this.btnExecutePatrol.Size = new System.Drawing.Size(130, 40);
+            this.btnExecutePatrol.Text = "Выполнить патруль";
+            this.btnExecutePatrol.UseVisualStyleBackColor = true;
+            this.btnExecutePatrol.Click += new System.EventHandler(this.btnExecutePatrol_Click);
+
             // 
-            // label10
+            // btnClear
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(487, 178);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 13);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Контракт";
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(630, 460);
+            this.btnClear.Size = new System.Drawing.Size(90, 40);
+            this.btnClear.Text = "Очистить";
+            this.btnClear.UseVisualStyleBackColor = true;
+         //   this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+
             // 
             // SecurityPatrolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 548);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.comboBoxContracts);
-            this.Controls.Add(this.btnAddArrestDetails);
-            this.Controls.Add(this.btnAddStolenItem);
-            this.Controls.Add(this.btnExecutePatrol);
-            this.Controls.Add(this.dtpDateOfIssue);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtIssuingAuthority);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtDocumentNumber);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtStolenItemValue);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtStolenItemName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.dtpDepartureDateTime);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCallReason);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtCommanderName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCrewNumber);
-            this.Controls.Add(this.dataGridViewPatrols);
-            this.Name = "SecurityPatrolForm";
-            this.Text = "Патрули";
+            this.ClientSize = new System.Drawing.Size(820, 580);
+            this.MinimumSize = new System.Drawing.Size(820, 500);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Управление патрулями";
+
+            this.Controls.AddRange(new System.Windows.Forms.Control[] {
+                this.dataGridViewPatrols,
+                this.groupBoxPatrol,
+                this.groupBoxStolen,
+                this.groupBoxArrest,
+                this.btnExecutePatrol,
+                this.btnClear
+            });
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrols)).EndInit();
+            this.groupBoxPatrol.ResumeLayout(false);
+            this.groupBoxPatrol.PerformLayout();
+            this.groupBoxStolen.ResumeLayout(false);
+            this.groupBoxStolen.PerformLayout();
+            this.groupBoxArrest.ResumeLayout(false);
+            this.groupBoxArrest.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
-
-        #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewPatrols;
         private System.Windows.Forms.TextBox txtCrewNumber;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCommanderName;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCallReason;
-        private System.Windows.Forms.DateTimePicker dtpDepartureDateTime;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtStolenItemName;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtStolenItemValue;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtDocumentNumber;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtIssuingAuthority;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dtpDepartureDateTime;
         private System.Windows.Forms.DateTimePicker dtpDateOfIssue;
+        private System.Windows.Forms.ComboBox comboBoxContracts;
         private System.Windows.Forms.Button btnExecutePatrol;
         private System.Windows.Forms.Button btnAddStolenItem;
         private System.Windows.Forms.Button btnAddArrestDetails;
-        private System.Windows.Forms.ComboBox comboBoxContracts;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblContract;
+        private System.Windows.Forms.Label lblCrewNumber;
+        private System.Windows.Forms.Label lblCommanderName;
+        private System.Windows.Forms.Label lblCallReason;
+        private System.Windows.Forms.Label lblDepartureDateTime;
+        private System.Windows.Forms.Label lblStolenItemName;
+        private System.Windows.Forms.Label lblStolenItemValue;
+        private System.Windows.Forms.Label lblDocumentNumber;
+        private System.Windows.Forms.Label lblIssuingAuthority;
+        private System.Windows.Forms.Label lblDateOfIssue;
+        private System.Windows.Forms.GroupBox groupBoxPatrol;
+        private System.Windows.Forms.GroupBox groupBoxStolen;
+        private System.Windows.Forms.GroupBox groupBoxArrest;
     }
 }

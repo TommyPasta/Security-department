@@ -1,4 +1,5 @@
 ﻿using Security_department.DTOs;
+using Security_department.Mappers;
 using Security_department.Presenters.Interface;
 using Security_department.Services.Interface;
 using Security_department.Views;
@@ -19,32 +20,42 @@ namespace Security_department.Presenters.Classes
         {
             _contractService = contractService;
             _contractView = contractView;
-
-            // Подписка на события формы, если они есть
         }
 
         public void LoadContracts()
         {
             var contracts = _contractService.GetAllContracts();
-            // Обновление формы с полученными данными
+            _contractView.LoadContracts(contracts);
         }
 
         public void AddContract(ContractDTO contractDto)
         {
             _contractService.AddContract(contractDto);
-            LoadContracts(); // Обновление списка договоров после добавления
+            LoadContracts();
         }
 
         public void RemoveContract(int id)
         {
             _contractService.RemoveContract(id);
-            LoadContracts(); // Обновление списка договоров после удаления
+            LoadContracts();
         }
 
         public void UpdateContract(ContractDTO contractDto)
         {
-            // Логика обновления договора
-            LoadContracts(); // Обновление списка договоров после обновления
+            // Получаем существующий контракт
+            var existingContract = _contractService.GetContractById(contractDto.Id);
+            if (existingContract == null)
+                throw new ArgumentException("Контракт не найден.");
+
+            // Удаляем старый и добавляем новый (или можно реализовать Update в сервисе)
+            _contractService.RemoveContract(contractDto.Id);
+            _contractService.AddContract(contractDto);
+            LoadContracts();
+        }
+
+        public List<ContractDTO> GetAllContracts()
+        {
+            return _contractService.GetAllContracts();
         }
     }
 }
